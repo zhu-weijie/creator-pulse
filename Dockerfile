@@ -8,6 +8,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+RUN pip install .
+
+ENV FLASK_APP=app/main.py
+
 EXPOSE 8080
 
 CMD ["flask", "run", "--host=0.0.0.0", "--port=8080"]
