@@ -22,7 +22,7 @@ class DataIngestion:
 
     def __init__(self):
         self.ingestion_config = DataIngestionConfig()
-        self.dataset_url = "https://raw.githubusercontent.com/entbappy/Branching-tutorial/master/relataly%20url/Updated_resume.csv"
+        self.dataset_url = "https://raw.githubusercontent.com/Himanshu-1703/reddit-sentiment-analysis/refs/heads/main/data/reddit.csv"
 
     def initiate_data_ingestion(self):
         """Main method to perform data ingestion."""
