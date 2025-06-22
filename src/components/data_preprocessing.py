@@ -10,9 +10,9 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../.
 from src.utils.logging import logger
 
 logger.info("Ensuring NLTK data (wordnet, punkt, punkt_tab) is up-to-date...")
-nltk.download('wordnet', quiet=True)
-nltk.download('punkt', quiet=True)
-nltk.download('punkt_tab', quiet=True)
+nltk.download("wordnet", quiet=True)
+nltk.download("punkt", quiet=True)
+nltk.download("punkt_tab", quiet=True)
 logger.info("NLTK check complete.")
 
 
