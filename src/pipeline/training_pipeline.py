@@ -2,6 +2,7 @@ import os
 import sys
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import lightgbm as lgb
 from dotenv import load_dotenv
 import mlflow
@@ -72,10 +73,18 @@ def run_training():
         mlflow.log_artifact(MODEL_PATH)
         logger.info("Model saved and logged to MLflow.")
 
-        f1 = mlflow.sklearn.eval_and_log_metrics(
-            model, X_test_tfidf, y_test, prefix="test_"
-        )
-        logger.info(f"Model evaluation metrics logged: {f1}")
+        logger.info("Evaluating model on the test set.")
+        y_pred = model.predict(X_test_tfidf)
+
+        metrics = {
+            "test_accuracy": accuracy_score(y_test, y_pred),
+            "test_precision": precision_score(y_test, y_pred, average='weighted'),
+            "test_recall": recall_score(y_test, y_pred, average='weighted'),
+            "test_f1_score": f1_score(y_test, y_pred, average='weighted')
+        }
+
+        mlflow.log_metrics(metrics)
+        logger.info(f"Model evaluation metrics logged: {metrics}")
 
     logger.info("--- Production Training Pipeline Finished ---")
 
