@@ -1,18 +1,18 @@
-# src/utils/preprocessing.py
+# In src/utils/preprocessing.py
 import re
 import nltk
-from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
-nltk.download("stopwords", quiet=True)
-negation_words = {"not", "no", "never", "nor", "don't"}
-english_stopwords = set(stopwords.words("english")) - negation_words
+
+nltk.download("wordnet", quiet=True)
+nltk.download("punkt", quiet=True)
 lemmatizer = WordNetLemmatizer()
 
 
 def preprocess_text(text: str) -> str:
     """
     A robust, shared function for cleaning and preparing text for sentiment analysis.
+    This version uses the simple, high-performing logic from our initial experiments.
     """
     if not isinstance(text, str):
         return ""
@@ -23,10 +23,9 @@ def preprocess_text(text: str) -> str:
 
     text = re.sub(r"[^a-z\s]", "", text)
 
+    text = " ".join(text.split())
+
     words = nltk.word_tokenize(text)
+    lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
 
-    processed_words = [
-        lemmatizer.lemmatize(word) for word in words if word not in english_stopwords
-    ]
-
-    return " ".join(processed_words)
+    return " ".join(lemmatized_words)
