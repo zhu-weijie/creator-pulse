@@ -6,6 +6,8 @@ from dataclasses import dataclass
 from nltk.stem import WordNetLemmatizer
 import nltk
 
+from src.utils.preprocessing import preprocess_text
+
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from src.utils.logging import logger
 
@@ -61,17 +63,9 @@ class DataTransformation:
 
         text_column = "clean_comment"
 
-        logger.info(f"Applying cleaning to '{text_column}' column...")
-        train_df["processed_text"] = train_df[text_column].apply(self.clean_text)
-        test_df["processed_text"] = test_df[text_column].apply(self.clean_text)
-
-        logger.info(f"Applying lemmatization to '{text_column}' column...")
-        train_df["processed_text"] = train_df["processed_text"].apply(
-            self.lemmatize_text
-        )
-        test_df["processed_text"] = test_df["processed_text"].apply(self.lemmatize_text)
-
-        logger.info("Preprocessing complete.")
+        logger.info("Applying shared preprocessing function...")
+        train_df["processed_text"] = train_df[text_column].apply(preprocess_text)
+        test_df["processed_text"] = test_df[text_column].apply(preprocess_text)
 
         os.makedirs(os.path.dirname(self.config.processed_train_path), exist_ok=True)
 

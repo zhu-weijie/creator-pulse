@@ -4,6 +4,8 @@ from flask import Flask, request, jsonify
 import nltk
 from nltk.stem import WordNetLemmatizer
 
+from src.utils.preprocessing import preprocess_text
+
 
 app = Flask(__name__)
 
@@ -18,19 +20,6 @@ except FileNotFoundError:
     model = None
 
 lemmatizer = WordNetLemmatizer()
-
-
-def preprocess_text(text):
-    """Applies the same cleaning steps as the training pipeline."""
-    if not isinstance(text, str):
-        return ""
-    text = text.lower()
-    text = re.sub(r"http\S+", "", text)
-    text = re.sub(r"[^a-z\s]", "", text)
-    text = " ".join(text.split())
-    words = nltk.word_tokenize(text)
-    lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
-    return " ".join(lemmatized_words)
 
 
 @app.route("/", methods=["GET"])
