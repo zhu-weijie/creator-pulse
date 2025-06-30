@@ -8,6 +8,9 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY scripts/bootstrap.py scripts/bootstrap.py
+RUN python scripts/bootstrap.py
+
 COPY . .
 
 RUN pip install .
