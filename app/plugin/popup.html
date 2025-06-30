@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CreatorPulse</title>
+    <style>
+        body { font-family: sans-serif; width: 350px; padding: 10px; }
+        h1 { font-size: 16px; }
+        #loading, #error { display: none; color: grey; }
+        #results { display: none; }
+        #chart-container { width: 60%; margin: 20px auto; }
+    </style>
+    <script src="lib/chart.min.js"></script>
+</head>
+<body>
+    <h1>CreatorPulse: YouTube Sentiment</h1>
+    <div id="loading">Loading comments and analyzing...</div>
+    <div id="error"></div>
+    <div id="results">
+        <div id="chart-container">
+            <canvas id="sentimentChart"></canvas>
+        </div>
+        <h3>Summary</h3>
+        <p id="summary-text"></p>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
