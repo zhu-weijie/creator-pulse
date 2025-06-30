@@ -25,6 +25,10 @@ stages:
       hash: md5
       md5: 352ab27ba4ded0105b2cb1ef72e1c4eb
       size: 3138
+    - path: src/utils/preprocessing.py
+      hash: md5
+      md5: f367c1effd699208b5e6da28fff59a82
+      size: 985
     outs:
     - path: data/processed/
       hash: md5
@@ -43,9 +47,13 @@ stages:
       hash: md5
       md5: d09062ee7b9887cd6b9f9c8852ee98d2
       size: 3110
+    - path: src/utils/preprocessing.py
+      hash: md5
+      md5: f367c1effd699208b5e6da28fff59a82
+      size: 985
     outs:
     - path: artifacts/
       hash: md5
-      md5: bc12a2673dadcc3b10a3d0f0e7664a37.dir
-      size: 4880128
+      md5: 48649a991ce3bb6be4e181bbbbf9bb16.dir
+      size: 4880150
       nfiles: 2
