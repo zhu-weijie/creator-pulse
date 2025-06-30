@@ -1,13 +1,14 @@
 import os
 import pickle
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from nltk.stem import WordNetLemmatizer
 
 from src.utils.preprocessing import preprocess_text
 
 
 app = Flask(__name__)
-
+CORS(app)
 
 try:
     with open("artifacts/tfidf_vectorizer.pkl", "rb") as f:
