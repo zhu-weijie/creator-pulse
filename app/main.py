@@ -1,3 +1,4 @@
+import os
 import pickle
 from flask import Flask, request, jsonify
 from nltk.stem import WordNetLemmatizer
@@ -18,6 +19,13 @@ except FileNotFoundError:
     model = None
 
 lemmatizer = WordNetLemmatizer()
+
+
+@app.route("/config", methods=["GET"])
+def get_config():
+    """Provides public-facing configuration to the frontend."""
+    public_config = {"youtubeApiKey": os.getenv("YOUTUBE_API_KEY")}
+    return jsonify(public_config)
 
 
 @app.route("/", methods=["GET"])
