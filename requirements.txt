@@ -10,6 +10,7 @@ imbalanced-learn==0.13.0
 lightgbm==4.6.0
 optuna==4.4.0
 dvc[s3]==3.60.1
+gunicorn==23.0.0
 
 # For API development
 Flask==3.1.1

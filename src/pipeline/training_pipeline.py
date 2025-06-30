@@ -78,9 +78,9 @@ def run_training():
 
         metrics = {
             "test_accuracy": accuracy_score(y_test, y_pred),
-            "test_precision": precision_score(y_test, y_pred, average='weighted'),
-            "test_recall": recall_score(y_test, y_pred, average='weighted'),
-            "test_f1_score": f1_score(y_test, y_pred, average='weighted')
+            "test_precision": precision_score(y_test, y_pred, average="weighted"),
+            "test_recall": recall_score(y_test, y_pred, average="weighted"),
+            "test_f1_score": f1_score(y_test, y_pred, average="weighted"),
         }
 
         mlflow.log_metrics(metrics)

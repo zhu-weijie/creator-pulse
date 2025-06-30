@@ -8,6 +8,9 @@ COPY requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+COPY scripts/bootstrap.py scripts/bootstrap.py
+RUN python scripts/bootstrap.py
+
 COPY . .
 
 RUN pip install .
@@ -16,4 +19,4 @@ ENV FLASK_APP=app/main.py
 
 EXPOSE 8080
 
-CMD ["flask", "run", "--host=0.0.0.0", "--port=8080"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "app.main:app"]
