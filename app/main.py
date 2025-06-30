@@ -8,10 +8,6 @@ from nltk.stem import WordNetLemmatizer
 app = Flask(__name__)
 
 
-nltk.download("wordnet", quiet=True)
-nltk.download("punkt", quiet=True)
-
-
 try:
     with open("artifacts/tfidf_vectorizer.pkl", "rb") as f:
         vectorizer = pickle.load(f)
