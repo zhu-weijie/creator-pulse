@@ -1,7 +1,5 @@
-import re
 import pickle
 from flask import Flask, request, jsonify
-import nltk
 from nltk.stem import WordNetLemmatizer
 
 from src.utils.preprocessing import preprocess_text
