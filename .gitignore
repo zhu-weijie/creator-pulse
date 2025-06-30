@@ -196,3 +196,9 @@ cython_debug/
 # OS-specific
 .DS_Store
 Thumbs.db
+
+# DVC Tracked Directories
+/data/raw/
+/data/processed/
+/artifacts/
+.dvc/
